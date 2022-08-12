@@ -60,6 +60,8 @@ pipeline {
             steps{
                 script{                    
                     dir ('test-application') {
+		    	sh "git config --global user.email gioele.laugelli@reti.it"
+  			sh "git config --global user.name Gioele"
                         sh "sed -i 's*        image: dockerhublab/test-app:$VERSIONE_OLD*        image: dockerhublab/test-app:$VERSIONE_NEW*' dev/deployment.yaml"
 			sh "git add ."
                         sh "git commit -m '$VERSIONE_OLD-->$VERSIONE_NEW'"
