@@ -19,7 +19,7 @@ pipeline {
                     dir ('test-application') {
                         deleteDir()
                     }
-                    sh "git clone https://github.com/GioeleLaugelli/test-application.git"
+                    sh "git clone https://github.com/GioeleLaugelli/Application.git"
                 }
             }
         }        
@@ -30,7 +30,7 @@ pipeline {
             }
             steps{
                 script{
-                    VERSIONE_OLD = sh (script:"grep 'image: dockerhublab/test-app:' test-application/dev/deployment.yaml | sed 's*        image: dockerhublab/test-app:**'", returnStdout: true).trim()
+                    VERSIONE_OLD = sh (script:"grep 'image: dockerhublab/test-app:' Application/dev/deployment.yaml | sed 's*        image: dockerhublab/test-app:**'", returnStdout: true).trim()
                     VERSIONE_NEW = sh (script:"echo $VERSIONE_OLD + 0.1 | bc", returnStdout: true).trim()
                 }
             }
